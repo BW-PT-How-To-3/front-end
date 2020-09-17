@@ -16,6 +16,9 @@ function Login() {
         password: ''
     });
 
+     //state for dislaying user info
+     const [data, setData] = useState([]);
+
     const [buttonDisabled, setButtonDisabled] = useState(true);
     useEffect(() => {
         formSchema.isValid(userInput).then(valid => {
@@ -49,33 +52,42 @@ function Login() {
     const submitHandler = e => {
         e.preventDefault();
 
+        //reset form once submitted
         setUserInput({
             username: '',
             password: ''
-        })
+        });
+
+        //ensure user data is being returned
+        axios
+            .post('https://reqres.in/api/users', userInput)
+            .then( res => setData(res))
+            .catch( err => console.log(err.res))
+
+        console.log('login successful')
     };
 
     const changeHandler = e => {
         e.persist();
         validator(e);
 
-        let value = e.target.value;
-        setUserInput({...userInput, [e.target.name]: value});
+        setUserInput({...userInput, [e.target.name]: e.target.value});
     };
 
     return(
         <div>
             <form onSubmit={submitHandler}>
                 <h1>Log In</h1>
-                <p>Log in here using your username and password</p>
+                <p>Log in using your username and password</p>
 
                 <div className="form-input">
                     <label htmlFor="username">
                         {/* Username */}
                         <input
                             type="text"
+                            id="username"
                             name="username"
-                            value={userInput.name}
+                            value={userInput.username}
                             onChange={changeHandler}
                             placeholder="username"
                         />
@@ -86,6 +98,7 @@ function Login() {
                         {/* Password */}
                         <input
                             type="password"
+                            id="password"
                             name="password"
                             value={userInput.password}
                             onChange={changeHandler}
@@ -95,8 +108,9 @@ function Login() {
                     </label>
                 </div>
                 <button disabled={buttonDisabled}>Log In</button>
+                <pre>{JSON.stringify(data, null, 2)}</pre>
             </form>
-            <button>Sign Up</button>
+            <p>Don't have an account?</p>
         </div>
     )
 }
