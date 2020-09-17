@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Login() {
 
@@ -6,6 +6,13 @@ function Login() {
         name: '',
         password: ''
     });
+
+    const [buttonDisabled, setButtonDisabled] = useState(true);
+    useEffect(() => {
+        formSchema.isValid(userInput).then(valid => {
+          setButtonDisabled(!valid);
+        });
+      }, [userInput]);
 
     const submitHandler = e => {
         e.preventDefault();
@@ -52,7 +59,7 @@ function Login() {
                 </div>
                 <button>Log In</button>
             </form>
-            <button>Sign Up</button>
+            <button disabled={buttonDisabled}>Sign Up</button>
         </div>
     )
 }
