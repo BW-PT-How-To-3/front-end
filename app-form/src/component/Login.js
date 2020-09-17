@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const formSchema = yup.object().shape({
     username: yup.string()
-            .required('Name is a required field.'),
+            .required('Username is a required field.'),
     password: yup.string()
             .required('Password is a required field.')
 })
@@ -82,30 +82,29 @@ function Login() {
 
                 <div className="form-input">
                     <label htmlFor="username">
-                        {/* Username */}
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={userInput.username}
-                            onChange={changeHandler}
-                            placeholder="username"
-                        />
+                        Username
                         {errorState.username.length > 0 ? (<p className="error">{errorState.username}</p>) : null}
-                    </label>
+                    </label><br/>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        value={userInput.username}
+                        onChange={changeHandler}
+                        placeholder="username"
+                    />
 
-                    <label htmlFor="password">
-                        {/* Password */}
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={userInput.password}
-                            onChange={changeHandler}
-                            placeholder="password"
-                        />
+                    <label htmlFor="password">Password
                         {errorState.password.length > 0 ? (<p className="error">{errorState.password}</p>) : null}
-                    </label>
+                    </label><br/>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={userInput.password}
+                        onChange={changeHandler}
+                        placeholder="password"
+                    />
                 </div>
                 <button disabled={buttonDisabled}>Log In</button>
                 <pre>{JSON.stringify(data, null, 2)}</pre>
