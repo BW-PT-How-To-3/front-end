@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as yup from 'yup'; 
 import axios from 'axios';
 import { TextField, MuiThemeProvider } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 //comp
 import PasswordToggle from './PasswordToggle';
@@ -22,13 +23,16 @@ function Login() {
             margin: 15
         }
     }
+    const history = useHistory();
 
     const [userInput, setUserInput] = useState({
+        // const [username, setUsername] = useState("");
+        // const [password, setPassword] = useState("");
         username: '',
         password: ''
     });
 
-     //state for dislaying user info
+     //state for displaying user info
      const [data, setData] = useState([]);
 
     const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -63,6 +67,7 @@ function Login() {
 
     const submitHandler = e => {
         e.preventDefault();
+        
 
         //reset form once submitted
         setUserInput({
@@ -73,12 +78,18 @@ function Login() {
         //ensure user data is being returned
         axios
             .post('https://reqres.in/api/users', userInput)
-            .then( res => setData(res))
+            .then(res => {
+                // axios with request to retrieve a token from the server
+                console.log(res);
+                window.localStorage.setItem("token", res.data.payload);
+                history.push("/MainPage");
+            })
             .catch( err => console.log(err.res))
 
         console.log('login successful')
+            
     };
-
+            
     const changeHandler = e => {
         e.persist();
         validator(e);
