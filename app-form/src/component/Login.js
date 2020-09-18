@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup'; 
 import axios from 'axios';
+import { TextField, MuiThemeProvider } from '@material-ui/core';
+import { fontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+//comp
+import PasswordToggle from './PasswordToggle';
 
 const formSchema = yup.object().shape({
     username: yup.string()
@@ -10,6 +15,14 @@ const formSchema = yup.object().shape({
 })
 
 function Login() {
+
+    const [passwordInputType, ToggleIcon] = PasswordToggle();
+
+    const styles = {
+        button: {
+            margin: 15
+        }
+    }
 
     const [userInput, setUserInput] = useState({
         username: '',
@@ -75,41 +88,47 @@ function Login() {
     };
 
     return(
-        <div>
+        <div className="form-input">
+            <h1 className="app-bar">Log In</h1>
+            <p>Log in using your username and password</p>
             <form onSubmit={submitHandler}>
-                <h1>Log In</h1>
-                <p>Log in using your username and password</p>
 
-                <div className="form-input">
-                    <label htmlFor="username">
-                        Username
-                        {errorState.username.length > 0 ? (<p className="error">{errorState.username}</p>) : null}
-                    </label><br/>
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        value={userInput.username}
-                        onChange={changeHandler}
-                        placeholder="username"
-                    />
+                <div>
+                    <MuiThemeProvider>
+                        <TextField
+                            type="text"
+                            id="username"
+                            name="username"
+                            value={userInput.username}
+                            onChange={changeHandler}
+                            placeholder="Username"
+                        /><br/>
+                        <label htmlFor="username">
+                            {/*Username*/}
+                            {errorState.username.length > 0 ? (<p className="error">{errorState.username}</p>) : null}
+                        </label><br/>
+                    </MuiThemeProvider>
 
-                    <label htmlFor="password">Password
-                        {errorState.password.length > 0 ? (<p className="error">{errorState.password}</p>) : null}
-                    </label><br/>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={userInput.password}
-                        onChange={changeHandler}
-                        placeholder="password"
-                    />
+                    <MuiThemeProvider>
+                        
+                        <TextField
+                            type={passwordInputType}
+                            id="password"
+                            name="password"
+                            value={userInput.password}
+                            onChange={changeHandler}
+                            placeholder="Password"
+                        /><br/>
+                        <span className="password-icon">{ToggleIcon}</span>
+                        <label htmlFor="password"> {/*Password*/}
+                            {errorState.password.length > 0 ? (<p className="error">{errorState.password}</p>) : null}
+                        </label><br/>                        
+                    </MuiThemeProvider>
                 </div>
-                <button disabled={buttonDisabled}>Log In</button>
+                <button style={styles.button} disabled={buttonDisabled}>Log In</button>
                 <pre>{JSON.stringify(data, null, 2)}</pre>
             </form>
-            <p>Don't have an account?</p>
+            <p>Don't have an account? <span>Sign Up</span></p>
         </div>
     )
 }

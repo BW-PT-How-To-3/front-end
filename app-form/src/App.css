@@ -4,6 +4,7 @@
 
 .form-input {
   display: flex;
+  flex-direction: column;
 }
 
 .error {
@@ -11,4 +12,24 @@
   font-size: 0.7rem;
   margin: 0;
   padding-bottom: 5px;
+}
+
+span {
+  text-decoration: underline;
+  color: #63B3ED;
+  cursor: pointer;
+}
+
+.app-bar {
+  background-color: aquamarine;
+  margin: 0;
+  padding: 2% 0;
+  color: #2B6CB0;
+}
+.password-icon {
+  position: absolute;
+  top: 190px;
+  right: 70px;
+  cursor: pointer;
+  z-index: 1000;
 }
