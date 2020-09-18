@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import * as yup from 'yup'; 
 import axios from 'axios';
 import { TextField, MuiThemeProvider } from '@material-ui/core';
-import { fontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 //comp
 import PasswordToggle from './PasswordToggle';
@@ -89,7 +88,7 @@ function Login() {
 
     return(
         <div className="form-input">
-            <h1 className="app-bar">Log In</h1>
+            <h1 className="app-bar">Welcome back!</h1>
             <p>Log in using your username and password</p>
             <form onSubmit={submitHandler}>
 
