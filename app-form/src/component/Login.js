@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup'; 
 import axios from 'axios';
-import { TextField, MuiThemeProvider } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { TextField } from '@material-ui/core';
+import { useHistory, Link } from 'react-router-dom';
 
 //comp
 import PasswordToggle from './PasswordToggle';
