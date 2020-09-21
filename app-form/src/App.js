@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 import Login from './component/Login';
-// import your fontawesome library
+import Signup from './component/Signup';
 import './component/fontawesome';
 import PrivateRoute from './utils/PrivateRoute';
 
@@ -17,6 +17,7 @@ return (
         <Link to = '/MainPage'>Main Page</Link>
       </nav>
       <Route exact path="/" component={Login} />
+      <Route path="/register" component={Signup}/>
       <PrivateRoute exact path = '/MainPage'>
         {/* <BubblePage/> */}
       </PrivateRoute>

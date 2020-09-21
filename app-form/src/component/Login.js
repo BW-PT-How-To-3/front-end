@@ -134,7 +134,7 @@ function Login() {
                                         <div><span className="password-icon-login">{ToggleIcon}</span></div>
                                 </div>
                                 <button disabled={buttonDisabled} className="login-btn">Log In</button>
-                                <p>Don't have an account? <Link to="/sign-up" style={styles.links}>Sign Up</Link></p>
+                                <p>Don't have an account? <Link to="/register" style={styles.links}>Sign Up</Link></p>
                                 {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
                             </form>
                         </div>  
