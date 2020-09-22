@@ -19,10 +19,13 @@ body {
   padding: 2% 0;
   color: #4FD1C5;
   border-radius: 25px 25px 0 0;
+  font-size: 1.7rem;
 }
+
 
 form {
   margin: 0 10%;
+  height: 40vh;
 }
 
 .form-info {
@@ -117,8 +120,12 @@ button[disabled]{
   top: 100px;
 }
 
-@media only screen and (min-width: 501px) {
+/*WIDEST SCREEN*/
+@media only screen and (min-width: 950px) {
  
+  body {
+    /* background-color: green; */
+  }
   .password-icon-signup {
     color: #949494;
     cursor: pointer;
@@ -212,7 +219,7 @@ button[disabled]{
 
 @media only screen and (max-width: 949px) and (min-width: 501px) {
   body {
-    background-color: yellow;
+    /* background-color: yellow; */
   }
 
   .app-bar {

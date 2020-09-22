@@ -19,8 +19,10 @@ function Login() {
     const [passwordInputType, ToggleIcon] = PasswordToggle();
 
     const styles = {
-        button: {
-            margin: 15
+        links: {
+            textDecoration: 'none',
+            color: '#4FD1C5',
+            cursor: 'pointer'
         }
     }
     const history = useHistory();

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup'; 
 import axios from 'axios';
-import { TextField } from '@material-ui/core';
+import { TextField, Select, InputLabel, MenuItem } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 //comp
@@ -9,6 +9,7 @@ import PasswordToggle from './PasswordToggle';
 
 const formSchema = yup.object().shape({
     email: yup.string()
+            .email("Invalid email address")
             .required('Required'),
     username: yup.string()
             .required('Required'),
@@ -16,7 +17,9 @@ const formSchema = yup.object().shape({
             .required('Required')
             .test('len', 'Password must be more than 5 characters long.', val => val.length > 5),
     legal: yup.boolean()
-            .oneOf([true], "Must agree to Terms of Use and Privacy Policy.")
+            .oneOf([true], "Must agree to Terms of Use and Privacy Policy."),
+    role: yup.string().required('Must select an account type to continue.')
+    
 });
 
 
@@ -38,14 +41,16 @@ function Signup(){
         email: '',
         username:'',
         password: '',
-        legal: false
+        legal: false,
+        role: ''
     });
 
     const [errorState, setErrorState] = useState({
         email: '',
         username: '',
         password: '',
-        legal: ''
+        legal: '',
+        role: ''
     });
 
     const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -81,7 +86,8 @@ function Signup(){
             email: '',
             username: '',
             password: '',
-            legal: false
+            legal: false,
+            role: ''
         });
 
         axios
@@ -147,8 +153,24 @@ function Signup(){
                                     helperText={errorState.password.length > 0 ? (<p className="error">{errorState.password}</p>) : null && errorState.password > 0 ? (<p className="error">{errorState.password}</p>) : null}
                                     
                                 />
-                                <span className="password-icon-signup">{ToggleIcon}</span>
-                            
+                                <span className="password-icon-signup">{ToggleIcon}</span><br/>
+
+                                <InputLabel htmlFor="role" id="demo-simple-select-label">Account Type
+                                    <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            name="role"
+                                            value={userInput.role}
+                                            onChange={changeHandler}>
+
+                                            <MenuItem value="Basic">Basic</MenuItem>
+                                            <MenuItem value="Admin">Admin</MenuItem>
+                                            <MenuItem value="Super Admin">Super Admin</MenuItem>
+                    
+                                    </Select>
+                                    {errorState.role.length > 0 ? (<p className="error">{errorState.role}</p>) : null}
+                                </InputLabel>
+                                
                             <div className="legal">
                                 <label htmlFor="legal">
                                     <input
@@ -161,6 +183,7 @@ function Signup(){
                                     I agree to the <span style={styles.links}>Terms of Use</span> and <span style={styles.links}>Privacy Policy</span>.
                                 </label>
                             </div>
+
                             <button disabled={buttonDisabled} className="signup-btn">GET STARTED!</button>
                             {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
                         </form>
