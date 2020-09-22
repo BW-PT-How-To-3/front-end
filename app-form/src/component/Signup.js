@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
-import { TextField } from "@material-ui/core";
+import {
+  TextField,
+  Select,
+  InputLabel,
+  MenuItem,
+  FormControl,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 //comp
 import PasswordToggle from "./PasswordToggle";
 
 const formSchema = yup.object().shape({
-  email: yup.string().required("Required"),
+  email: yup.string().email("Invalid email address").required("Required"),
   username: yup.string().required("Required"),
   password: yup
     .string()
@@ -21,6 +27,7 @@ const formSchema = yup.object().shape({
   legal: yup
     .boolean()
     .oneOf([true], "Must agree to Terms of Use and Privacy Policy."),
+  role: yup.string().required("Must select an account type to continue."),
 });
 
 function Signup() {
@@ -41,6 +48,7 @@ function Signup() {
     username: "",
     password: "",
     legal: false,
+    role: "",
   });
 
   const [errorState, setErrorState] = useState({
@@ -48,6 +56,7 @@ function Signup() {
     username: "",
     password: "",
     legal: "",
+    role: "",
   });
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -73,6 +82,20 @@ function Signup() {
           [e.target.name]: err.errors[0],
         });
       });
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    //reset form once submitted
+    setUserInput({
+      email: "",
+      username: "",
+      password: "",
+      legal: false,
+      role: "",
+    });
+    //   });
   };
 
   const submitHandler = (e) => {
@@ -167,6 +190,7 @@ function Signup() {
 
               <label htmlFor="password"></label>
               <br />
+
               <TextField
                 id="standard-basic"
                 label="Password"
@@ -184,6 +208,28 @@ function Signup() {
                 }
               />
               <span className="password-icon-signup">{ToggleIcon}</span>
+              <br />
+              <InputLabel id="demo-simple-select-label">
+                Account Type
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  name="role"
+                  fullWidth
+                  value={userInput.role}
+                  onChange={changeHandler}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value="Basic">Basic</MenuItem>
+                  <MenuItem value="Admin">Admin</MenuItem>
+                  <MenuItem value="Super Admin">Super Admin</MenuItem>
+                </Select>
+                {errorState.role.length > 0 ? (
+                  <p className="error">{errorState.role}</p>
+                ) : null}
+              </InputLabel>
 
               <div className="legal">
                 <label htmlFor="legal">
@@ -198,6 +244,7 @@ function Signup() {
                   and <span style={styles.links}>Privacy Policy</span>.
                 </label>
               </div>
+
               <button disabled={buttonDisabled} className="signup-btn">
                 GET STARTED!
               </button>
@@ -216,6 +263,7 @@ function Signup() {
         </p>
       </div>
     </div>
+    //   </div>
   );
 }
 

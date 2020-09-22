@@ -19,10 +19,13 @@ body {
   padding: 2% 0;
   color: #4FD1C5;
   border-radius: 25px 25px 0 0;
+  font-size: 1.7rem;
 }
+
 
 form {
   margin: 0 10%;
+  height: 40vh;
 }
 
 .form-info {
@@ -73,8 +76,6 @@ form {
   font-weight: 700;
   text-align: left;
   line-height: 1.5rem;
-  display: grid;
-  place-items: center;
 }
 
 .form-graphics p span {
@@ -117,8 +118,12 @@ button[disabled]{
   top: 100px;
 }
 
-@media only screen and (min-width: 501px) {
+/*WIDEST SCREEN*/
+@media only screen and (min-width: 950px) {
  
+  body {
+    background-color: green;
+  }
   .password-icon-signup {
     color: #949494;
     cursor: pointer;
@@ -179,7 +184,7 @@ button[disabled]{
   
   .form-graphics p {
     position: relative;
-    top: 350px;
+    top: 255px;
     color: #2B6CB0;
     font-size: 1.7rem;
     font-weight: 700;
