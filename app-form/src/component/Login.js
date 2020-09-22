@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup'; 
-import axios from 'axios';
+// import axios from 'axios';
 import { TextField, MuiThemeProvider } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 //comp
 import PasswordToggle from './PasswordToggle';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const formSchema = yup.object().shape({
     username: yup.string()
@@ -76,8 +77,8 @@ function Login() {
         });
 
         //ensure user data is being returned
-        axios
-            .post('https://reqres.in/api/users', userInput)
+        axiosWithAuth
+            .post('https://how2lifehacks.herokuapp.com', userInput)
             .then(res => {
                 // axios with request to retrieve a token from the server
                 console.log(res);
