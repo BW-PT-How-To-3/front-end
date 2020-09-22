@@ -23,7 +23,7 @@ function DeleteUser(props) {
         console.log(err);
       });
   };
-
+  ////
   useEffect(() => {}, []);
 
   return <div></div>;
