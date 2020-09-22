@@ -95,36 +95,14 @@ function Signup() {
       legal: false,
       role: "",
     });
-    //   });
-  };
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    //reset form once submitted
-    setUserInput({
-      email: "",
-      username: "",
-      password: "",
-      legal: false,
-    });
 
     axios
       .post(`https://reqres.in/api/users`, userInput)
+      // .post(`https://how-to-3.herokuapp.com/api/auth/register`, registerState)
       .then((res) => setData(res))
       .catch((err) => console.log(err.res));
-    console.log("login successful");
-
-    //    -----------------------------------Shirley----------------------------
-    // axios
-    // .post(`https://how-to-3.herokuapp.com/api/auth/register`, registerState)
-    // .then((res) => {
-    //   console.log(res.data)
-
     //   history.push('/Login')
-    // })
-    // .catch((err) => console.log(err));
-    //   }
+    console.log("login successful");
   };
 
   const changeHandler = (e) => {
