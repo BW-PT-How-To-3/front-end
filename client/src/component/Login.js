@@ -82,6 +82,10 @@ function Login() {
         // axios with request to retrieve a token from the server
         console.log(res);
         window.localStorage.setItem("token", res.data.payload);
+        //    // Alternatively-----------------------------------------
+        // localStorage.setItem('token', res.data.token)
+        // localStorage.setItem('id', res.data.id)
+
         history.push("/MainPage");
       })
       .catch((err) => console.log(err.res));

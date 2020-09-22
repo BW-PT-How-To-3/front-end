@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "./utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 
 ////-------------------------Login User Gets to this page------------------------///
 ////-------------------------Access to all the cards-----------------------------///
@@ -35,7 +36,7 @@ const MainPage = () => {
   }
 
   return (
-    //     CARDS linked here.
+    //     CARDS component linked here.
     //    form setup for Card layout
     <CardContainer>
       <CardStyling key={cards.id}>
