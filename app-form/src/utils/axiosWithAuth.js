@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export const axiosWithAuth = () => {
     const token = window.localStorage.getItem('token');
 
@@ -7,6 +8,6 @@ export const axiosWithAuth = () => {
         headers: {
             authorization: token,
         },
-        baseURL: 'http://localhost:5000/',
+        baseURL: 'https://how2lifehacks.herokuapp.com',
     });
 };
