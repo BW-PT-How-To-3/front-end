@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup'; 
 import axios from 'axios';
-import { TextField, Select, InputLabel, MenuItem } from '@material-ui/core';
+import { TextField, Select, InputLabel, MenuItem, FormControl } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 //comp
@@ -142,6 +142,7 @@ function Signup(){
                                 /><br/>
 
                                 <label htmlFor="password"></label><br/>
+                                
                                 <TextField
                                     id="standard-basic"
                                     label="Password"
@@ -154,15 +155,18 @@ function Signup(){
                                     
                                 />
                                 <span className="password-icon-signup">{ToggleIcon}</span><br/>
-
-                                <InputLabel htmlFor="role" id="demo-simple-select-label">Account Type
+                                <InputLabel id="demo-simple-select-label">Account Type
+                                    
                                     <Select
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
                                             name="role"
+                                            fullWidth
                                             value={userInput.role}
                                             onChange={changeHandler}>
-
+                                            <MenuItem value="">
+                                                <em>None</em>
+                                            </MenuItem>
                                             <MenuItem value="Basic">Basic</MenuItem>
                                             <MenuItem value="Admin">Admin</MenuItem>
                                             <MenuItem value="Super Admin">Super Admin</MenuItem>
