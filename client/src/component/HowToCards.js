@@ -1,19 +1,26 @@
 import React from 'react';
-import UserHowToCards from './UserHowToCards';
+import styled from 'styled-components';
 
-/*
-BuergerForm => NewCard
-HomePage => Homepage
-OrderCard.js => HowToCards
 
-UserHowToCards => this will house HowTocards
-*/
 function HowToCards({card}) {
+
+    const CardBtn = styled.div`
+        display: flex;
+        justify-content: space-around;
+    `;
+
+    const Button = styled.button`
+        padding: 10px 12px;
+        margin: 5px 2px;
+    `;
     return (
         <div className="cards">
-            {/* <button>Delete</button> */}
             <h2>{card.title}</h2>
             <p>{card.instructions}</p>
+            <CardBtn>
+                <Button>Delete</Button>
+                <Button>Edit</Button>
+            </CardBtn>
         </div>
     )
 };
