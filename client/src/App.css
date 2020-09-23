@@ -2,7 +2,7 @@
   text-align: center;
 }
 .signup-div {
-  margin: 2% 5%;
+  /* margin: 2% 0; */
   height: 100vh;
 }
 .error {
@@ -12,11 +12,12 @@
 }
 
 .app-bar {
-  background-color: #2B6CB0;
+  /* background-color: #2B6CB0; */
   padding: 4% 0;
-  color: #4FD1C5;
-  border-radius: 25px 25px 0 0;
+  color: #2B6BB0;
+  /* border-radius: 25px 25px 0 0; */
   font-size: 1.3rem;
+  font-family: 'Cabin', sans-serif;
 }
 
 
@@ -34,7 +35,7 @@ form {
   background-color: white;
   border-radius: 25px 25px 0 0;
   width: 100%;
-  box-shadow: 2px 3px 5px #888888;
+  /* box-shadow: 2px 3px 5px #888888; */
   height: 520px;
 }
 
@@ -60,11 +61,11 @@ form {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: 100% 10%;  
-  box-shadow: 2px 3px 5px #888888;
+  /* box-shadow: 2px 3px 5px #888888; */
   width: 100%;
   margin: auto;
-  border-radius: 0 0 25px 25px;
-  height: 25vh;
+  /* border-radius: 0 0 25px 25px; */
+  height: 35vh;
 
 }
 
@@ -101,7 +102,7 @@ form {
 }
 
 button {
-  padding: 9px 15px;
+  padding: 15px 150px;
   border-radius: 5px;
   border: 1px solid #2B6BB0;
   color: white;
@@ -113,7 +114,7 @@ button {
 
 button:disabled,
 button[disabled]{
-  padding: 9px 15px;
+  padding: 15px 150px;
   border-radius: 5px;
   border: 1px solid #E0E0E0;
   color: #A6A6A6;
@@ -138,7 +139,10 @@ button[disabled]{
   /* body {
     background-color: yellow;
   } */
-  
+  .app-bar {
+       font-size: 1.8rem;
+    font-family: 'Cabin', sans-serif;
+  }
   .signup-div {
     width: 500px;
     margin: auto;
@@ -158,6 +162,7 @@ button[disabled]{
     top: -25px;
     left: 135px;
   }
+  
 
 }
 
