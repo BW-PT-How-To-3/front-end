@@ -13,7 +13,7 @@ const formSchema = yup.object().shape({
   username: yup.string().required("Username is a required field."),
   password: yup.string().required("Password is a required field."),
 });
-
+//
 function Login() {
   const [passwordInputType, ToggleIcon] = PasswordToggle();
 
@@ -101,61 +101,75 @@ function Login() {
   };
 
   return (
-    <div className="form-input">
-      <h1 className="app-bar">Welcome back!</h1>
-      <p>Log in using your username and password</p>
-      <form onSubmit={submitHandler}>
-        <div>
-          <label htmlFor="username"></label>
-          <br />
-          <TextField
-            id="standard-basic"
-            label="Username"
-            type="text"
-            name="username"
-            fullWidth
-            value={userInput.username}
-            onChange={changeHandler}
-            helperText={
-              errorState.username.length > 0 ? (
-                <p className="error">{errorState.username}</p>
-              ) : null
-            }
-          />
-          <br />
+    <div className="signup-div">
+      <div>
+      <div className="form-info">
+        <h1 className="app-bar">Welcome back!</h1>
+        <p className="member-login">Log in using your username and password</p>
 
-          <label htmlFor="password"></label>
-          <br />
-
-          <TextField
-            type={passwordInputType}
-            id="standard-basic"
-            label="Password"
-            name="password"
-            fullWidth
-            value={userInput.password}
-            onChange={changeHandler}
-            helperText={
-              errorState.password.length > 0 ? (
-                <p className="error">{errorState.password}</p>
-              ) : null
-            }
-          />
+        <form onSubmit={submitHandler} className="form-login">
           <div>
-            <span className="password-icon-login">{ToggleIcon}</span>
+            <label htmlFor="username"></label>
+            <br />
+            <TextField
+              id="standard-basic"
+              label="Username"
+              type="text"
+              name="username"
+              fullWidth
+              value={userInput.username}
+              onChange={changeHandler}
+              helperText={
+                errorState.username.length > 0 ? (
+                  <p className="error">{errorState.username}</p>
+                ) : null
+              }
+            />
+            <br />
+
+            <label htmlFor="password"></label>
+            <br />
+
+            <TextField
+              type={passwordInputType}
+              id="standard-basic"
+              label="Password"
+              name="password"
+              fullWidth
+              value={userInput.password}
+              onChange={changeHandler}
+              helperText={
+                errorState.password.length > 0 ? (
+                  <p className="error">{errorState.password}</p>
+                ) : null
+              }
+            />
+            <div>
+              <span className="password-icon-login">{ToggleIcon}</span>
+            </div>
           </div>
-        </div>
-        <button disabled={buttonDisabled} className="login-btn">
-          Log In
-        </button>
+          <button disabled={buttonDisabled} className="login-btn">
+            Log In
+          </button>
+          <p className="login-signup-here">
+            Don't have an account?{" "}
+            <Link to="/register" style={styles.links}>
+              Sign Up
+            </Link>
+          </p>
+          {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+        </form>
+      </div>
+      </div>
+      <div className="form-graphics">
         <p>
-          Don't have an account?{" "}
-          <Link to="/register" style={styles.links}>
-            Sign Up
-          </Link>
+          Find your next project.
+          <br />
+          Engange your followers.
+          <br />
+          Do it all with <span>HowTo</span>.
         </p>
-        {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-      </form>
+      </div>
     </div>
   );
 }

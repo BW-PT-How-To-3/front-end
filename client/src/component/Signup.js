@@ -127,6 +127,7 @@ function Signup() {
               Log in
             </Link>
           </p>
+          
           <div className="form-input-login">
             <form onSubmit={submitHandler}>
               <label htmlFor="email"></label>
