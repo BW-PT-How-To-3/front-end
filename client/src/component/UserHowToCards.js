@@ -4,15 +4,17 @@ import HowToCards from './HowToCards';
 const UserHowToCards = (props) => {
 
     return (
-        <div>
-           <h1>{props.order}</h1>
-           <p>{props.instructions}</p> 
-           {props.cards.map((card, i) => 
-           <div>Existing
-           <HowToCards
-                key={i} 
-                card={card} 
-           /></div>
+        <div className="cards-main">
+           {/* <h1>{props.order}</h1>
+           <p>{props.instructions}</p>  */}
+           {/* <Link to="create-how-to"><button>Add a new HowTo</button></Link> */}
+           {props.cards.map((card, index) => 
+            <div>
+                <HowToCards
+                    key={index} 
+                    card={card} 
+                />
+            </div>
            )}
         </div>
     );

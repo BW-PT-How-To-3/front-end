@@ -119,7 +119,7 @@ function NewCard(props) {
               <Link to="/"><button>Cancel</button></Link>
               {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
             </form>
-            <p>Once created you can view your HowTo card(s) <Link to="/my-how-tos">Here</Link></p>
+            <p>Once submitted you can view your HowTo card(s) <Link to="/my-how-tos">Here</Link></p>
           </div>
   );
 }
