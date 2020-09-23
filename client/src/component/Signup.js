@@ -5,8 +5,7 @@ import {
   TextField,
   Select,
   InputLabel,
-  MenuItem,
-  FormControl,
+  MenuItem
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
@@ -123,7 +122,7 @@ function Signup() {
                     </p> */}
           <p className="member-login">
             Already have an account?{" "}
-            <Link to="/" style={styles.links}>
+            <Link to="/login" style={styles.links}>
               Log in
             </Link>
           </p>
@@ -227,7 +226,7 @@ function Signup() {
               <button disabled={buttonDisabled} className="signup-btn">
                 GET STARTED!
               </button>
-              {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+              <pre>{JSON.stringify(data, null, 2)}</pre>
             </form>
           </div>
         </div>

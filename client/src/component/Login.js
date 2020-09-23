@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 // import axios from 'axios';
-import { TextField, MuiThemeProvider } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
 //comp
@@ -34,7 +34,7 @@ function Login() {
   });
 
   //state for displaying user info
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
   useEffect(() => {
@@ -86,7 +86,7 @@ function Login() {
         // localStorage.setItem('token', res.data.token)
         // localStorage.setItem('id', res.data.id)
 
-        history.push("/MainPage");
+        history.push("/");
       })
       .catch((err) => console.log(err.res));
 

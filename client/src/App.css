@@ -134,6 +134,17 @@ button[disabled]{
   top: 70px;
 }
 
+.home-btn {
+  padding: 15px 50px;
+  border-radius: 5px;
+  border: 1px solid #2B6BB0;
+  color: white;
+  background-color: #2B6BB0;
+  box-shadow: 2px 3px 5px #888888;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 /*MEDIUM SCREENS*/
 @media only screen and (max-width: 1023px) and (min-width: 501px) {
   /* body {
