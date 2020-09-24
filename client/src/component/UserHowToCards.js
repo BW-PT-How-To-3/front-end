@@ -17,7 +17,7 @@ const UserHowToCards = () => {
     <div className="cards-main">
       {cards.map((card, index) => (
         <div>
-          <HowToCards key={index} card={card} />
+          <HowToCards key={index} card={cards} />
         </div>
       ))}
     </div>
