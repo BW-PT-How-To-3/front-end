@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
-// import axios from 'axios';
 import { TextField } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-
-//comp
 import PasswordToggle from "./PasswordToggle";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axios from "axios";
 
 const formSchema = yup.object().shape({
   username: yup.string().required("Username is a required field."),
@@ -76,8 +73,8 @@ function Login() {
     });
 
     //ensure user data is being returned
-    axiosWithAuth
-      .post("https://how2lifehacks.herokuapp.com", userInput)
+    axios
+      .post("https://how-to-hacks.herokuapp.com/api/users/login", userInput)
       .then((res) => {
         // axios with request to retrieve a token from the server
         console.log(res);
@@ -89,8 +86,6 @@ function Login() {
         history.push("/");
       })
       .catch((err) => console.log(err.res));
-
-    console.log("login successful");
   };
 
   const changeHandler = (e) => {
@@ -103,63 +98,65 @@ function Login() {
   return (
     <div className="signup-div">
       <div>
-      <div className="form-info">
-        <h1 className="app-bar">Welcome back!</h1>
-        <p className="member-login">Log in using your username and password</p>
-
-        <form onSubmit={submitHandler} className="form-login">
-          <div>
-            <label htmlFor="username"></label>
-            <br />
-            <TextField
-              id="standard-basic"
-              label="Username"
-              type="text"
-              name="username"
-              fullWidth
-              value={userInput.username}
-              onChange={changeHandler}
-              helperText={
-                errorState.username.length > 0 ? (
-                  <p className="error">{errorState.username}</p>
-                ) : null
-              }
-            />
-            <br />
-
-            <label htmlFor="password"></label>
-            <br />
-
-            <TextField
-              type={passwordInputType}
-              id="standard-basic"
-              label="Password"
-              name="password"
-              fullWidth
-              value={userInput.password}
-              onChange={changeHandler}
-              helperText={
-                errorState.password.length > 0 ? (
-                  <p className="error">{errorState.password}</p>
-                ) : null
-              }
-            />
-            <div>
-              <span className="password-icon-login">{ToggleIcon}</span>
-            </div>
-          </div>
-          <button disabled={buttonDisabled} className="login-btn">
-            Log In
-          </button>
-          <p className="login-signup-here">
-            Don't have an account?{" "}
-            <Link to="/register" style={styles.links}>
-              Sign Up
-            </Link>
+        <div className="form-info">
+          <h1 className="app-bar">Welcome back!</h1>
+          <p className="member-login">
+            Log in using your username and password
           </p>
-          {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-        </form>
-      </div>
+
+          <form onSubmit={submitHandler} className="form-login">
+            <div>
+              <label htmlFor="username"></label>
+              <br />
+              <TextField
+                id="standard-basic"
+                label="Username"
+                type="text"
+                name="username"
+                fullWidth
+                value={userInput.username}
+                onChange={changeHandler}
+                helperText={
+                  errorState.username.length > 0 ? (
+                    <p className="error">{errorState.username}</p>
+                  ) : null
+                }
+              />
+              <br />
+
+              <label htmlFor="password"></label>
+              <br />
+
+              <TextField
+                type={passwordInputType}
+                id="standard-basic"
+                label="Password"
+                name="password"
+                fullWidth
+                value={userInput.password}
+                onChange={changeHandler}
+                helperText={
+                  errorState.password.length > 0 ? (
+                    <p className="error">{errorState.password}</p>
+                  ) : null
+                }
+              />
+              <div>
+                <span className="password-icon-login">{ToggleIcon}</span>
+              </div>
+            </div>
+            <button disabled={buttonDisabled} className="login-btn">
+              Log In
+            </button>
+            <p className="login-signup-here">
+              Don't have an account?{" "}
+              <Link to="/register" style={styles.links}>
+                Sign Up
+              </Link>
+            </p>
+            {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+          </form>
+        </div>
       </div>
       <div className="form-graphics">
         <p>
