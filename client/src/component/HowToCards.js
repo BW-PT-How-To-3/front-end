@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FaTrash, FaPencilAlt } from 'react-icons/fa';
 
 function HowToCards({card}) {
-
+    document.body.style = 'background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);';
     const CardBtn = styled.div`
         display: flex;
         justify-content: space-around;
@@ -15,22 +15,25 @@ function HowToCards({card}) {
     `;
 
     return (
-        <div className="cards">
-            <h2>{card.title}</h2>
-            <p>{card.instructions}</p>
+        <div>
 
-            {/* These are the delete and edit buttons */}
-            <CardBtn>
-                {/* delete button */}
-                <Button>
-                    <FaTrash/>
-                </Button>
+            <div className="cards">
+                <h2>{card.title}</h2>
+                <p>{card.instructions}</p>
 
-                {/* edit button*/}
-                <Button>
-                    <FaPencilAlt/>
-                </Button>
-            </CardBtn>
+                {/* These are the delete and edit buttons */}
+                <CardBtn>
+                    {/* delete button */}
+                    <Button>
+                        <FaTrash/>
+                    </Button>
+
+                    {/* edit button*/}
+                    <Button>
+                        <FaPencilAlt/>
+                    </Button>
+                </CardBtn>
+            </div>
         </div>
     )
 };
