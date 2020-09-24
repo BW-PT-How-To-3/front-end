@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
-import {
-  TextField,
-  Select,
-  InputLabel,
-  MenuItem
-} from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { TextField, Select, InputLabel, MenuItem } from "@material-ui/core";
+import { Link, useHistory } from "react-router-dom";
 
 //comp
 import PasswordToggle from "./PasswordToggle";
@@ -41,9 +36,9 @@ function Signup() {
     },
   };
 
-  const [passwordInputType, ToggleIcon] = PasswordToggle();
+  const history = useHistory();
 
-  const [data, setData] = useState([]);
+  const [passwordInputType, ToggleIcon] = PasswordToggle();
 
   const [userInput, setUserInput] = useState({
     email: "",
@@ -99,12 +94,12 @@ function Signup() {
     });
 
     axios
-      .post(`https://reqres.in/api/users`, userInput)
-      // .post(`https://how-to-3.herokuapp.com/api/auth/register`, registerState)
-      .then((res) => setData(res))
+      .post(`https://how-to-hacks.herokuapp.com/api/users/register`, userInput)
+      .then((res) => {
+        // localStorage.setItem("token", res.data.payload);
+        history.push("/login");
+      })
       .catch((err) => console.log(err.res));
-    //   history.push('/Login')
-    console.log("login successful");
   };
 
   const changeHandler = (e) => {
@@ -129,7 +124,7 @@ function Signup() {
               Log in
             </Link>
           </p>
-          
+
           <div className="form-input-login">
             <form onSubmit={submitHandler}>
               <label htmlFor="email"></label>
@@ -203,9 +198,9 @@ function Signup() {
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value="Basic">Basic</MenuItem>
-                  <MenuItem value="Admin">Admin</MenuItem>
-                  <MenuItem value="Super Admin">Super Admin</MenuItem>
+                  <MenuItem value="basic">Basic</MenuItem>
+                  <MenuItem value="admin">Admin</MenuItem>
+                  <MenuItem value="superadmin">Super Admin</MenuItem>
                 </Select>
                 {errorState.role.length > 0 ? (
                   <p className="error">{errorState.role}</p>
@@ -229,7 +224,6 @@ function Signup() {
               <button disabled={buttonDisabled} className="signup-btn">
                 GET STARTED!
               </button>
-              <pre>{JSON.stringify(data, null, 2)}</pre>
             </form>
           </div>
         </div>

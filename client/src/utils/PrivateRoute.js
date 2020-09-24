@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 // rest operator(looks a lot spread operator)
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const token = window.localStorage.getItem("token");
+  console.log(token);
 
   return (
     <Route
