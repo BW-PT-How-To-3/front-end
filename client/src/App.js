@@ -16,38 +16,71 @@ function App() {
 
   const styles = {
     links: {
-      textDecoration: "none",
-      color: "#4FD1C5",
+      margin: "0 20px",
       cursor: "pointer",
+      textDecoration: "none",
+      color: "#000",
+      fontSize: "0.9rem",
     },
   };
 
   const Navbar = styled.nav`
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #cccccc;
   `;
 
   const NavItems = styled.div`
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: palevioletred;
     text-decoration: none;
   `;
+
+  // return (
+  //   <Router>
+  //     <div className="App">
+  //       <Navbar>
+  //         {/* Linking login with token */}
+  //         <NavItems>
+  //           <Link to="/">
+  //             <span styles={styles.links}>Main Page</span>
+  //           </Link>
+  //           <Link to="/create-how-to">Create New HowTo</Link>
+  //           <Link to="/my-how-tos">My HowTo List</Link>
+  //         </NavItems>
+  //         <div>
+  //           <Link to="/login">Login</Link>
+  //         </div>
+  //       </Navbar>
 
   return (
     <Router>
       <div className="App">
         <Navbar>
           {/* Linking login with token */}
-          <NavItems>
-            <Link to="/">
-              <span styles={styles.links}>Main Page</span>
-            </Link>
-            <Link to="/create-how-to">Create New HowTo</Link>
-            <Link to="/my-how-tos">My HowTo List</Link>
-          </NavItems>
-          <div>
-            <Link to="/login">Login</Link>
+          <div className="logo-div">
+            <a href="https://lambda-how-to-build-week.netlify.app/index.html">
+              <h3 className="logo">
+                How<span>To</span>
+              </h3>
+            </a>
           </div>
+
+          <NavItems>
+            <Link to="/" style={styles.links}>
+              Main Page
+            </Link>
+            <Link to="/create-how-to" style={styles.links}>
+              New HowTo
+            </Link>
+            <Link to="/my-how-tos" style={styles.links}>
+              My HowTos
+            </Link>
+            <Link to="/login" style={styles.links}>
+              Login
+            </Link>
+          </NavItems>
         </Navbar>
 
         <Route path="/login" component={Login} />

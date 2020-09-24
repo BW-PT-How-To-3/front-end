@@ -25,6 +25,9 @@ const formSchema = yup.object().shape({
 });
 
 function Signup() {
+
+  document.body.style = 'background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);';
+  
   const styles = {
     links: {
       textDecoration: "none",
@@ -229,7 +232,7 @@ function Signup() {
         <p>
           Find your next project.
           <br />
-          Engange your followers.
+          Engage your followers.
           <br />
           Do it all with <span>HowTo</span>.
         </p>
