@@ -15,6 +15,9 @@ const formSchema = yup.object().shape({
 });
 //
 function Login() {
+
+  document.body.style = 'background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);';
+  
   const [passwordInputType, ToggleIcon] = PasswordToggle();
 
   const styles = {
@@ -165,7 +168,7 @@ function Login() {
         <p>
           Find your next project.
           <br />
-          Engange your followers.
+          Engage your followers.
           <br />
           Do it all with <span>HowTo</span>.
         </p>
