@@ -14,10 +14,10 @@ import styled from "styled-components";
 function App() {
   //put this logic into How-to fetch cards in the howtoUserCard component
 
-  const [cards, setCards] = useState([]);
-  const addCard = (card) => {
-    setCards([...cards, card]);
-  };
+  // const [cards, setCards] = useState([]);
+  // const addCard = (card) => {
+  //   setCards([...cards, card]);
+  // };
 
   const styles = {
     links: {
@@ -124,7 +124,9 @@ function App() {
           path="/my-how-tos"
           // component={UserHowToCards}
         >
-          <UserHowToCards cards={cards} />
+          <UserHowToCards
+          // cards={cards}
+          />
         </PrivateRoute>
         <PrivateRoute exact path="/">
           <Homepage />

@@ -4,7 +4,8 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 
-const UserHowToCards = (props) => {
+const UserHowToCards = () => {
+  // remove props
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const UserHowToCards = (props) => {
         {/* <h1>{props.order}</h1>
               <p>{props.instructions}</p>  */}
         {/* <Link to="create-how-to"><button>Add a new HowTo</button></Link> */}
-        {props.cards.map((card, index) => (
+        {cards.map((card, index) => (
           <div>
             <HowToCards key={index} card={card} />
           </div>

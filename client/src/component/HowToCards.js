@@ -19,7 +19,9 @@ function HowToCards({ card }) {
     <div>
       <div className="cards">
         <h2>{card.title}</h2>
-        <p>{card.instructions}</p>
+        {/* <p>{card.instructions}</p> ------------------------*/}
+        <p>{card.post}</p>
+
         {/* These are the delete and edit buttons */}
         <CardBtn>
           {/* delete button */}
