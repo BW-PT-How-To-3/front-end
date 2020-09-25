@@ -5,6 +5,7 @@ import { TextField } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import PasswordToggle from "./PasswordToggle";
 import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const formSchema = yup.object().shape({
   username: yup.string().required("Username is a required field."),
@@ -76,12 +77,12 @@ function Login() {
     });
 
     //ensure user data is being returned
-    axios
-      .post("https://how-to-hacks.herokuapp.com/api/users/login", userInput)
+    axiosWithAuth()
+      .post("api/users/login", userInput)
       .then((res) => {
         // axios with request to retrieve a token from the server
-        console.log(res);
-        window.localStorage.setItem("token", res.data.payload);
+        console.log("SOMETHING", res);
+        window.localStorage.setItem("token", res.data.token);
         //    // Alternatively-----------------------------------------
         // localStorage.setItem('token', res.data.token)
         // localStorage.setItem('id', res.data.id)

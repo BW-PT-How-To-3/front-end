@@ -25,9 +25,9 @@ const formSchema = yup.object().shape({
 });
 
 function Signup() {
+  document.body.style =
+    "background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);";
 
-  document.body.style = 'background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);';
-  
   const styles = {
     links: {
       textDecoration: "none",
@@ -224,6 +224,7 @@ function Signup() {
               <button disabled={buttonDisabled} className="signup-btn">
                 GET STARTED!
               </button>
+              {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
             </form>
           </div>
         </div>
