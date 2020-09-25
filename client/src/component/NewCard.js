@@ -3,15 +3,8 @@ import * as yup from "yup";
 import axios from "axios";
 import { TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-
-/*
-BuergerForm => NewCard
-HomePage => Homepage
-OrderCard.js => HowToCards
-
-UserHowToCards => this will house HowTocards
-*/
+// import styled from "styled-components";
+// import axiosWithAuth from "../utils/axiosWithAuth";
 
 const formSchema = yup.object().shape({
   title: yup.string().required("A title is required."),
@@ -19,6 +12,10 @@ const formSchema = yup.object().shape({
 });
 
 function NewCard(props) {
+  //styles
+  document.body.style =
+    "background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);";
+
   const [userInput, setUserInput] = useState({
     title: "",
     instructions: "",
@@ -31,11 +28,12 @@ function NewCard(props) {
     instructions: "",
   });
 
-  //   useEffect(() => {
-  //     formSchema.isValid(userInput).then((valid) => {
-  //       setButtonDisabled(!valid);
-  //     });
-  //   }, [userInput]);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  useEffect(() => {
+    formSchema.isValid(userInput).then((valid) => {
+      setButtonDisabled(!valid);
+    });
+  }, [userInput]);
 
   const validator = (e) => {
     yup
@@ -80,7 +78,7 @@ function NewCard(props) {
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className="form">
         <label htmlFor="title"></label>
         <br />
         <TextField
@@ -112,9 +110,11 @@ function NewCard(props) {
           fullWidth
         />
 
-        <button>Create HowTo</button>
+        <button disabled={buttonDisabled} className="card-btn">
+          Create HowTo
+        </button>
         <Link to="/">
-          <button>Cancel</button>
+          <button className="card-btn">Cancel</button>
         </Link>
         {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       </form>
