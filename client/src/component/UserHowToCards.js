@@ -29,8 +29,8 @@ const UserHowToCards = () => {
               <p>{props.instructions}</p>  */}
         {/* <Link to="create-how-to"><button>Add a new HowTo</button></Link> */}
         {cards.map((card, index) => (
-          <div>
-            <HowToCards key={index} card={card} />
+          <div key={index}>
+            <HowToCards card={card} setCards={setCards} />
           </div>
         ))}
       </div>
