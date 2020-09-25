@@ -5,16 +5,37 @@ import {axiosWithAuth} from '../utils/axiosWithAuth';
 const initialHowTo = {
   title: '',
   post: '',
-  author: ''
+  author: '',
+  id: 0,
+  created_at: ''
 }
+const CardBtn = styled.div`
+display: flex;
+justify-content: space-around;
+`;
 
-const HowToCards = ({ cards, updateCards }) => {
-  console.log(cards);
+const Button = styled.button`
+padding: 10px 12px;
+margin: 5px 2px;
+`;
+
+const HowToCards = ({}) => {
+  // console.log(cards);
   const [editing, setEditing] = useState(false);
   const [howToEdit, setHowToEdit] = useState(initialHowTo);
   const [newCard, setNewCard] = useState(initialHowTo);
 
-  useEffect(() => {}, [cards]);
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("/api/howto/getall")
+      .then((res) => {
+        setCards(res.data);
+      });
+  }, []);
+
+  // useEffect(() => {}, [cards]);
   const editCard = cards => {
     setEditing(true);
     setHowToEdit(cards);
@@ -23,21 +44,32 @@ const HowToCards = ({ cards, updateCards }) => {
   const addSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-    .post(`api/howto/`, newCard)
+    .post(`api/howto/new`, newCard)
     .then((res) => {
-      updateCards(res.data);
+      setCards(res.data);
     })
     .catch((err) => console.log(err))
     .finally(setNewCard(initialHowTo));
   }
 
-  const saveEdit = e => {
-    e.preventDefault();
+  const saveEdit = card => {
+    setHowToEdit({
+      id: card.id,
+      title: howToEdit.title ,
+      post: howToEdit.post ,
+      author: card.author,
+      created_at: card.created_at
+    })
+
+    // e.preventDefault();
+    console.log(howToEdit);
+    console.log(card);
     axiosWithAuth()
-    .put(`api/howto/update/${howToEdit.id}`, howToEdit)
+    .put(`api/howto/update/${card.id}`, howToEdit)
     .then((res) => {
+      console.log(res);
       setEditing(false);
-      updateCards(
+      setCards(
         cards.map((cardItem) => {
           if (cardItem.id === howToEdit.id){
             return howToEdit;
@@ -52,13 +84,14 @@ const HowToCards = ({ cards, updateCards }) => {
     });
   };
 
-  const deleteCard = cards => {
+  const deleteCard = card => {
+    console.log(card)
     axiosWithAuth()
-    .delete(`api/howto/${cards.id}`)
+    .delete(`api/howto/delete/${card.id}`)
     .then((res) => {
-      updateCards(
+      setCards(
         cards.filter((cardItem) => {
-          return cardItem.id !== cards.id;
+          return cardItem.id !== card.id;
         })
       )
     })
@@ -72,25 +105,22 @@ const HowToCards = ({ cards, updateCards }) => {
 
 
 
-  const CardBtn = styled.div`
-    display: flex;
-    justify-content: space-around;
-  `;
-
-  const Button = styled.button`
-    padding: 10px 12px;
-    margin: 5px 2px;
-  `;
+ 
   return (
+    <div>
+    {cards.map((cardItem) => (
+      
     <div className="cards">
-      <h2>{cards.title}</h2>
-      <p>{cards.post}</p>
+      <h2>{cardItem.title}</h2>
+      <p>{cardItem.post}</p>
+      
       <span className = 'delete' onClick = {e => {
           e.stopPropagation();
           deleteCard(cards)
+          
         }
       }>
-        x
+        
       </span>{" "}
       {editing && (
         <form onSubmit = {saveEdit}>
@@ -116,21 +146,25 @@ const HowToCards = ({ cards, updateCards }) => {
           value = {howToEdit.post}
           />
           </label>
+          
           <div className = 'button-row'>
             
-      <CardBtn>
-        <Button>Delete</Button>
-        <Button>Edit</Button>
-        <Button>Save</Button>
-        <Button>Cancel</Button>
-      </CardBtn>
           </div>
-
-        </form>
+          </form>
       )}
-
-    </div>
-  );
+      <CardBtn>
+      {/* <div> */}
+        <Button onClick = {() => deleteCard(cardItem)}>Delete</Button>
+        <Button onClick = {() => setEditing(true)}>Edit</Button>
+        <Button onClick = {() => saveEdit(cardItem)}>Save</Button>
+      </CardBtn>
+      {/* </div> */}
+          </div>
+    ))
+       
+        }
+  </div>
+  )
 }
 
 export default HowToCards;
