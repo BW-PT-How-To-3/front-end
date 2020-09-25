@@ -14,18 +14,6 @@ function NewCard(props) {
   //styles
   document.body.style = 'background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);';
   
-  const Button = styled.button`
-        padding: 10px 10px;
-        border-radius: 5px;
-        border: 1px solid #2B6BB0;
-        color: white;
-        background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
-        box-shadow: 2px 3px 5px #888888;
-        font-weight: 700;
-        font-size: 1rem;
-        cursor: pointer;
-        margin: 3% 10px 0 10px;
-  `;
 
   const [userInput, setUserInput] = useState({
     title: "",
@@ -122,10 +110,10 @@ function NewCard(props) {
                 fullWidth
               />
               
-              <Button disabled={buttonDisabled}>
+              <button disabled={buttonDisabled} className="card-btn">
                 Create HowTo
-              </Button>
-              <Link to="/"><Button>Cancel</Button></Link>
+              </button>
+              <Link to="/"><button className="card-btn">Cancel</button></Link>
               {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
             </form>
             <p>Once submitted you can view your HowTo card(s) <Link to="/my-how-tos">Here</Link></p>

@@ -1,5 +1,6 @@
 import React from 'react';
 import HowToCards from './HowToCards';
+import { Link } from 'react-router-dom';
 import Search from './Search';
 
 const UserHowToCards = (props) => {
@@ -7,6 +8,7 @@ const UserHowToCards = (props) => {
     return (
         <div>
             <Search/>
+            <Link to="/create-how-to"><button className="signup-btn">Add a new HowTo</button></Link>
             <div className="cards-main">
                 {/* <h1>{props.order}</h1>
                 <p>{props.instructions}</p>  */}

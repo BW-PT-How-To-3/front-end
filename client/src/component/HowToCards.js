@@ -12,6 +12,9 @@ function HowToCards({card}) {
     const Button = styled.button`
         padding: 10px 12px;
         margin: 5px 2px;
+        border: 1px solid #2B6BB0;
+        color: white;
+        background-color: #2B6BB0;
     `;
 
     return (

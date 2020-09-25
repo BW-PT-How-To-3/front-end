@@ -32,7 +32,7 @@ function App() {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #cccccc;
+    border-bottom: 1px solid #fff;
 `;
 
   const NavItems = styled.div `
@@ -55,7 +55,7 @@ return (
         </div>
         
         <NavItems>
-          <Link to = '/' style={styles.links}>Main Page</Link>
+          <Link to = '/' style={styles.links}>My Dashboard</Link>
           <Link to = '/create-how-to' style={styles.links}>New HowTo</Link>
           <Link to = '/my-how-tos' style={styles.links}>My HowTos</Link>
           <Link to ='/login' style={styles.links}>Login</Link>

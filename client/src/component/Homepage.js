@@ -36,7 +36,7 @@ function Homepage(props) {
   //2. state for search bar
   const [search, setSearch] = useState('');
   //3. only when search is clicked is when we fetch the data
-  const [submit, setSubmit] = useState('chicken')
+  const [submit, setSubmit] = useState('wine')
 
   useEffect(() => {
     console.log(`useEffect is running`)
@@ -83,6 +83,7 @@ function Homepage(props) {
                     <input
                     className="search-bar"
                     type="text"
+                    placeholder=""
                     value={search}
                     //anytime input changes, this will run
                     onChange={changeHandler}
@@ -104,11 +105,6 @@ function Homepage(props) {
                     ))
                     }
                 </CardContainer>
-                
-                {/* <Switch>
-                    <Route exact path="/" component={Recipe}/>
-                    <Route path="/item" component={RecipeInfo}/>
-                </Switch> */}
                 </div>
         </div>
     )

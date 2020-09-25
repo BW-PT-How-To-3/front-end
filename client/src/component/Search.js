@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 function Search() {
 
-    const [filter, setFilter] = useState(new Set());
     const [submit, setSubmit] = useState('')
+    const [filter, setFilter] = useState(submit);
 
     const changeHandler = e => {
         setFilter(e.target.value) //value of user input

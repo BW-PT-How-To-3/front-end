@@ -121,7 +121,7 @@ form {
   top: 95px;
 }
 
-button {
+.login-btn {
   padding: 15px 150px;
   border-radius: 5px;
   border: 1px solid #2B6BB0;
@@ -132,9 +132,33 @@ button {
   cursor: pointer;
 }
 
-button:disabled,
-button[disabled]{
+.login-btn:disabled,
+.signup-btn[disabled]{
   padding: 15px 150px;
+  border-radius: 5px;
+  border: 1px solid #E0E0E0;
+  color: #A6A6A6;
+  background-color: #E0E0E0;
+  box-shadow: none;
+  font-weight: 700;
+  cursor: auto;
+}
+
+.card-btn {
+  padding: 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #2B6BB0;
+  color: white;
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  box-shadow: 2px 3px 5px #888888;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 3% 10px 0 10px;
+}
+
+.card-btn:disabled {
+  padding: 10px 10px;
   border-radius: 5px;
   border: 1px solid #E0E0E0;
   color: #A6A6A6;
@@ -147,6 +171,15 @@ button[disabled]{
 .signup-btn {
   position: relative;
   top: 30px;
+  padding: 15px 150px;
+  border-radius: 5px;
+  border: 1px solid #2B6BB0;
+  color: white;
+  background-color: #2B6BB0;
+  box-shadow: 2px 3px 5px #888888;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 40px;
 }
 
 .login-btn {
@@ -218,6 +251,7 @@ button[disabled]{
     position: relative;
     top: -25px;
     left: 165px;
+    bottom: -200px;
   }
   
   .password-icon-login {
@@ -246,10 +280,9 @@ button[disabled]{
   .password-icon-signup {
     color: #949494;
     cursor: pointer;
-    position: relative;
-    top: -25%;
-    left: 165%;
-    
+    position: absolute;
+    top: 390px;
+    right: 350px;
   }
   
   .password-icon-login {
