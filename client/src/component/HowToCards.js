@@ -45,26 +45,41 @@ function HowToCards({ card, setCards }) {
   };
 
   const saveEdit = (card) => {
-    setHowToEdit({
+    // setHowToEdit({
+    //   id: card.id,
+    //   title: howToEdit.title,
+    //   post: howToEdit.post,
+    //   author: card.author,
+    //   created_at: card.created_at,
+    // });
+
+    const editedCard = {
       id: card.id,
       title: howToEdit.title,
       post: howToEdit.post,
       author: card.author,
       created_at: card.created_at,
-    });
+    };
 
     // e.preventDefault();
     console.log(howToEdit);
     console.log(card);
     axiosWithAuth()
-      .put(`api/howto/update/${card.id}`, howToEdit)
+      .put(`api/howto/update/${card.id}`, editedCard)
       .then((res) => {
         console.log(res);
         setEditing(false);
         setCards((previousCards) =>
+          // previousCards.map((cardItem) => {
+          //   if (cardItem.id === howToEdit.id) {
+          //     return howToEdit;
+          //   } else {
+          //     return cardItem;
+          //   }
+          // })
           previousCards.map((cardItem) => {
-            if (cardItem.id === howToEdit.id) {
-              return howToEdit;
+            if (cardItem.id === editedCard.id) {
+              return editedCard;
             } else {
               return cardItem;
             }
@@ -79,7 +94,7 @@ function HowToCards({ card, setCards }) {
   const deleteCard = (card) => {
     console.log(card);
     axiosWithAuth()
-      .delete(`api/howto/delete/${card.id}`)
+      .delete(`/api/howto/delete/${card.id}`)
       .then((res) => {
         setCards((previousCards) =>
           previousCards.filter((cardItem) => {

@@ -3,12 +3,12 @@ import * as yup from "yup";
 import axios from "axios";
 import { TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 // import styled from "styled-components";
-// import axiosWithAuth from "../utils/axiosWithAuth";
 
 const formSchema = yup.object().shape({
   title: yup.string().required("A title is required."),
-  instructions: yup.string(),
+  post: yup.string(),
 });
 
 function NewCard(props) {
@@ -18,14 +18,15 @@ function NewCard(props) {
 
   const [userInput, setUserInput] = useState({
     title: "",
-    instructions: "",
+    post: "",
+    // author: "persona",
   });
 
   //   const [data, setData] = useState(userInput);
 
   const [errorState, setErrorState] = useState({
     title: "",
-    instructions: "",
+    post: "",
   });
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -56,16 +57,21 @@ function NewCard(props) {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    //reset form once submitted
-    setUserInput({
-      title: "",
-      instructions: "",
-    });
-
-    axios
-      .post(`https://reqres.in/api/users`, userInput)
+    axiosWithAuth()
+      // axios needs to be invoked as  function
+      .post(`/api/howto/new`, userInput)
       .then((res) => props.addCard(res.data))
-      .catch((err) => console.log(err.res));
+      .catch((err) => console.log(err.res))
+      .finally(() => {
+        //reset form once submitted
+        // needs to be reset blank AFTER call success newCard
+        // .finally dedicated to action after axious regardless of submission or not
+        setUserInput({
+          title: "",
+          post: "",
+        });
+      });
+
     console.log("Your How-To has been created.");
   };
 
@@ -98,14 +104,14 @@ function NewCard(props) {
         />
         <br />
 
-        <label htmlFor="instructions"></label>
+        <label htmlFor="post"></label>
         <br />
         <TextField
           id="standard-basic"
           label="Describe your How-To"
           type="text"
-          name="instructions"
-          value={userInput.instructions}
+          name="post"
+          value={userInput.post}
           onChange={changeHandler}
           fullWidth
         />
