@@ -4,7 +4,6 @@ import * as yup from "yup";
 import { TextField } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import PasswordToggle from "./PasswordToggle";
-import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const formSchema = yup.object().shape({
@@ -13,9 +12,9 @@ const formSchema = yup.object().shape({
 });
 //
 function Login() {
+  document.body.style =
+    "background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);";
 
-  document.body.style = 'background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);';
-  
   const [passwordInputType, ToggleIcon] = PasswordToggle();
 
   const styles = {
