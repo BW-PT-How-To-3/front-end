@@ -19,7 +19,7 @@ function NewCard(props) {
   const [userInput, setUserInput] = useState({
     title: "",
     post: "",
-    // author: "persona",
+    author: "persona",
   });
 
   //   const [data, setData] = useState(userInput);

@@ -17,6 +17,8 @@ const Button = styled.button`
 
 function HowToCards({ card, setCards }) {
   const initialHowTo = {
+    // title: card.title,
+    // post: card.post,
     title: "",
     post: "",
     author: "",
@@ -26,25 +28,25 @@ function HowToCards({ card, setCards }) {
 
   const [editing, setEditing] = useState(false);
   const [howToEdit, setHowToEdit] = useState(initialHowTo);
-  const [newCard, setNewCard] = useState(initialHowTo);
+  // const [newCard, setNewCard] = useState(initialHowTo);
 
-  const addSubmit = (e) => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post(`api/howto/new`, newCard)
-      .then((res) => {
-        setCards(res.data);
-      })
-      .catch((err) => console.log(err))
-      .finally(setNewCard(initialHowTo));
-  };
+  // const addSubmit = (e) => {
+  //   e.preventDefault();
+  //   axiosWithAuth()
+  //     .post(`api/howto/new`, newCard)
+  //     .then((res) => {
+  //       setCards(res.data);
+  //     })
+  //     .catch((err) => console.log(err))
+  //     .finally(setNewCard(initialHowTo));
+  // };
 
-  const editCard = (cards) => {
-    setEditing(true);
-    setHowToEdit(cards);
-  };
+  // const editCard = (cards) => {
+  //   setEditing(true);
+  //   setHowToEdit(cards);
+  // };
 
-  const saveEdit = (card) => {
+  const saveEdit = () => {
     // setHowToEdit({
     //   id: card.id,
     //   title: howToEdit.title,
@@ -161,7 +163,7 @@ function HowToCards({ card, setCards }) {
           <Button onClick={() => setEditing(true)}>
             <FaPencilAlt />
           </Button>
-          <Button onClick={() => saveEdit(card)}>Save</Button>
+          <Button onClick={saveEdit}>Save</Button>
         </CardBtn>
       </div>
     </div>

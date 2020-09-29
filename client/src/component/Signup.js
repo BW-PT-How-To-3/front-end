@@ -94,7 +94,9 @@ function Signup() {
     });
 
     axios
-      .post(`https://how-to-hacks.herokuapp.com/api/users/register`, userInput)
+      // .post(`https://how-to-hacks.herokuapp.com/api/users/register`, userInput)
+      .post(`https://localhost:4000/api/users/register`, userInput)
+
       .then((res) => {
         // localStorage.setItem("token", res.data.payload);
         history.push("/login");

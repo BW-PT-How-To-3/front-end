@@ -122,12 +122,8 @@ function App() {
         <PrivateRoute
           exact
           path="/my-how-tos"
-          // component={UserHowToCards}
-        >
-          <UserHowToCards
-          // cards={cards}
-          />
-        </PrivateRoute>
+          component={UserHowToCards}
+        ></PrivateRoute>
         <PrivateRoute exact path="/">
           <Homepage />
         </PrivateRoute>
